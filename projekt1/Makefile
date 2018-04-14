@@ -8,6 +8,7 @@ all:
 
 clean:
 	rm -f *.o
+	rm -f *.mod
 
 test:
 	 ./i_projekt
