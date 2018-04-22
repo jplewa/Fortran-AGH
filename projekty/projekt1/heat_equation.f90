@@ -63,7 +63,7 @@ contains
         integer ::  i, N
         real (kind = 4), allocatable :: A(:, :), X(:)
         real (kind = 4) :: h
-        N = LBOUND(A,1)
+        N = UBOUND(A,1)
         if (allocated(A) .AND. allocated(X)) then
             h = 1.0_4/real(N, kind = 4)
             A(:,:) = 0

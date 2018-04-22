@@ -1,5 +1,5 @@
 IFORT = ifort
-OPTIONS = -std08 -module . -free -implicitnone -cpp -warn all -check bounds -O2
+OPTIONS = -std08 -module . -free -implicitnone -cpp -warn all -check bounds -fast
 
 all:
 	 $(IFORT) -c matrix_operations.f90 -c $(OPTIONS)
@@ -9,12 +9,13 @@ all:
 
 	make clean
 	make tests
+	make project
 
 clean:
 	rm -f *.o
 	rm -f *.mod
 
-run:
+project:
 	 ./i_projekt
 
 tests:

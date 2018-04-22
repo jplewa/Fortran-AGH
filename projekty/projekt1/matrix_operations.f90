@@ -3,7 +3,6 @@ module matrix_operations
 
     ! generic interface for Gauss-Jordan elimination for different precision levels
     ! works with allocatable matrices
-
     interface gj_elim
         module procedure gj_elim_4, gj_elim_8, gj_elim_16
     end interface gj_elim
