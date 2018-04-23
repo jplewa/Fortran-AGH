@@ -63,8 +63,8 @@ contains
         integer ::  i, N
         real (kind = 4), allocatable :: A(:, :), X(:)
         real (kind = 4) :: h
-        open (unit = 1, file = "kind4x")
-        open (unit = 2, file = "kind4y")
+        !open (unit = 1, file = "kind4x")
+        !open (unit = 2, file = "kind4y")
         N = UBOUND(A,1)
         if (allocated(A) .AND. allocated(X)) then
             h = 1.0_4/real(N, kind = 4)
@@ -79,11 +79,12 @@ contains
             A(N,N) = 1.0_4
             X(N) = 1.0_4
             call gj_elim(A, X) 
-            do i = LBOUND(A,1), N
-                write (1,*) X(i)
-                write (2,*) A(i,i)                
-            end do
-            close(1)
+            !do i = LBOUND(A,1), N
+            !    write (1,*) X(i)
+            !    write (2,*) A(i,i)                
+            !end do
+            !close(1)
+            !close(2)
         endif
     end subroutine heat_equation_solver_4
 
@@ -92,8 +93,8 @@ contains
         integer :: i, N
         real (kind = 8), allocatable :: A(:, :), X(:)
         real (kind = 8) :: h
-        open (unit = 1, file = "kind8x")
-        open (unit = 2, file = "kind8y")
+        !open (unit = 1, file = "kind8x")
+        !open (unit = 2, file = "kind8y")
         N = UBOUND(A,1)
         if (allocated(A) .AND. allocated(X)) then
             h = 1.0_8/real(N, kind = 8)
@@ -108,11 +109,12 @@ contains
             A(N,N) = 1.0_8
             X(N) = 1.0_8
             call gj_elim(A, X) 
-            do i = LBOUND(A,1), N
-                write (1,*) X(i)
-                write (2,*) A(i,i)                
-            end do
-            close(1)
+            !do i = LBOUND(A,1), N
+            !    write (1,*) X(i)
+            !    write (2,*) A(i,i)                
+            !end do
+            !close(1)
+            !close(2)
         endif
     end subroutine heat_equation_solver_8
 
@@ -121,8 +123,8 @@ contains
         integer :: i, N
         real (kind = 16), allocatable :: A(:, :), X(:)
         real (kind = 16) :: h
-        open (unit = 1, file = "kind16x")
-        open (unit = 2, file = "kind16y")
+        !open (unit = 1, file = "kind16x")
+        !open (unit = 2, file = "kind16y")
         N = UBOUND(A,1)
         if (allocated(A) .AND. allocated(X)) then
             h = 1.0_16/real(N, kind = 16)
@@ -137,11 +139,12 @@ contains
             A(N,N) = 1.0_16
             X(N) = 1.0_16
             call gj_elim(A, X) 
-            do i = LBOUND(A,1), N
-                write (1,*) X(i)
-                write (2,*) A(i,i)                
-            end do            
-            close(1)
+            !do i = LBOUND(A,1), N
+            !    write (1,*) X(i)
+            !    write (2,*) A(i,i)                
+            !end do            
+            !close(1)
+            !close(2)
         endif
     end subroutine heat_equation_solver_16
 
