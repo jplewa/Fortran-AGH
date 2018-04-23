@@ -6,7 +6,7 @@ program main
     real(kind = 16) :: a16 = 0
     write(*,*) "-------------------------------------------------------------------"    
     write(*,*) "HEAT EQUATION SOLUTION ERROR"
-    do j = 0,3
+    do j = 3,3
         call average_error(10**j, a4)
         call average_error(10**j, a8)
         call average_error(10**j, a16)
