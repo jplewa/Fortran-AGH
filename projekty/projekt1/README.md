@@ -1,3 +1,5 @@
+{::nomarkdown}
+
 <html>
 <head>
      <script src="/home/julia/.julia/v0.6/PlotlyJS/assets/plotly-latest.min.js"></script>
@@ -15,3 +17,4 @@
 
 </body>
 </html>
+{:/}
