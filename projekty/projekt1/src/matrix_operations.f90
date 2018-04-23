@@ -1,6 +1,5 @@
 module matrix_operations
     implicit none
-
     ! generic interface for Gauss-Jordan elimination for different precision levels
     ! works with allocatable matrices
     interface gj_elim
