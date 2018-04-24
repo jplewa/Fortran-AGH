@@ -21,13 +21,13 @@ make tests
 ```
 
 ### Building
-To build the project type
+To build the project, type
 ```
 make build
 ```
 
 ### Running
-After building, the project can be run with
+After building, to run the program, type
 ```
 ./bin/projekt
 ```
