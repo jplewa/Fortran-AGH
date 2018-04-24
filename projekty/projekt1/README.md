@@ -29,7 +29,7 @@ and then provide N and M to generate files with average numerical error of heat 
 ```
 ./out/results/
 ```
-For plotting purposes, a file with all the grid sized can be found there as well.
+For plotting purposes, a file with all the grid sizes can be found there as well.
 
 ### Plotting
 To generate plots with the results from 
