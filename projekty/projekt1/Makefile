@@ -3,7 +3,7 @@ OPTIONS = -std08 -module . -free -implicitnone -cpp -warn all -check bounds -fas
 
 all: 
 	make build
-	make tests
+	make test
 	make project
 	make plots
 
@@ -18,7 +18,7 @@ clean:
 	rm -f *.o
 	rm -f *.mod
 
-tests:
+test:
 	./bin/tests
 
 project:

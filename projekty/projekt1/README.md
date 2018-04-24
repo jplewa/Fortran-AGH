@@ -14,6 +14,12 @@ Pkg.update()
 ```
 in your Julia console.
 
+### Testing
+Tests of Gauss-Jordan matrix elimination can be run with
+```
+make tests
+```
+
 ### Building
 To build the project type
 ```
@@ -21,7 +27,7 @@ make build
 ```
 
 ### Running
-To run the project type
+After building, the project can be run with
 ```
 ./bin/projekt
 ```
@@ -44,4 +50,4 @@ The plots will be saved in
 ```
 ./out/plots/
 ```
-in PDF format.
+in the PDF format.

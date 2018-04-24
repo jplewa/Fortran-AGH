@@ -1,16 +1,17 @@
 program main
     use heat_equation, only : average_error
-    integer :: j
+    integer :: N, M, j
     real(kind = 4) :: a4 = 0
     real(kind = 8) :: a8 = 0
     real(kind = 16) :: a16 = 0
+    read (*,*) N, M
     open (unit = 1, file = "out/results/xAxis")
     open (unit = 2, file = "out/results/kind4")
     open (unit = 3, file = "out/results/kind8")
     open (unit = 4, file = "out/results/kind16")
     write(*,*) "-------------------------------------------------------------------"    
     write(*,*) "HEAT EQUATION SOLUTION ERROR"
-    do j = 1, 10000
+    do j = 1, N, M
         call average_error(j, a4)
         call average_error(j, a8)
         call average_error(j, a16)
