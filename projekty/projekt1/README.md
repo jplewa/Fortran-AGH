@@ -1,6 +1,6 @@
 # Heat equation FDM solver and average error calculator
 Project for a university Fortran class.  
-Generates output files with the average numerical error of heat equation solutions for grids in range [1, N] with step M (where N and M are program arguments) for all three types of real number precision available in Fortran. Additionally, a JuliaLang program generates plots of the errors.
+Generates output files with the average numerical error of heat equation solutions for grids in range [1, N] with step M (where N and M are program arguments) for all three types of real number precision available in Fortran. Additionally, a JuliaLang program generates plots based on the results.
 
 ### Prerequisites
 Tested with ifort version 18.0.1 20171018.  
