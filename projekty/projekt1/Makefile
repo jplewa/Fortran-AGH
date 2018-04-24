@@ -11,7 +11,7 @@ build:
 	 $(IFORT) -c src/matrix_operations.f90 -c $(OPTIONS)
 	 $(IFORT) -c src/heat_equation.f90 $(OPTIONS)
 	 $(IFORT) -o bin/tests tests/tests.f90 matrix_operations.o $(OPTIONS)
-	 $(IFORT) -o bin/projekt src/projekt.f90 heat_equation.o matrix_operations.o $(OPTIONS)
+	 $(IFORT) -o bin/project src/project.f90 heat_equation.o matrix_operations.o $(OPTIONS)
 	 make clean
 
 clean:
@@ -22,7 +22,7 @@ test:
 	./bin/tests
 
 project:
-	 ./bin/projekt
+	 ./bin/project
 
 plots: 
 	 julia src/plots.jl

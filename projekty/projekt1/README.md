@@ -15,38 +15,39 @@ Pkg.update()
 in your Julia console.
 
 ### Testing
-Tests of Gauss-Jordan matrix elimination can be run with
+Tests of Gauss-Jordan matrix elimination can be run with:
 ```
 make tests
 ```
 
 ### Building
-To build the project, type
+To build the project, type:
 ```
 make build
 ```
 
 ### Running
-After building, to run the program, type
+After building, run the program with
 ```
-./bin/projekt
+./bin/project
 ```
-and then provide N and M to generate files with average numerical error of heat equation solutions for grids in range [1,N] with step M. Output files for all real number kinds can be found in
+and provide N and M values as described above.  
+Output files for the respective real number kinds can be found in:
 ```
 ./out/results/
 ```
-For plotting purposes, a file with all the grid sizes can be found there as well.
+For plotting purposes, an additional file with the grid sizes is generated as well.
 
 ### Plotting
 To generate plots with the results from 
 ```
 ./out/results/
 ```
-type
+type:
 ```
 make plots
 ```
-The plots will be saved in 
+The plots will be saved in the following location:
 ```
 ./out/plots/
 ```
