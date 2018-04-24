@@ -10,7 +10,7 @@ program main
     open (unit = 4, file = "out/results/kind16")
     write(*,*) "-------------------------------------------------------------------"    
     write(*,*) "HEAT EQUATION SOLUTION ERROR"
-    do j = 50, 2000, 100
+    do j = 1, 10000
         call average_error(j, a4)
         call average_error(j, a8)
         call average_error(j, a16)
