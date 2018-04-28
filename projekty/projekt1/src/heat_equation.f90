@@ -1,4 +1,5 @@
 module heat_equation
+    
     ! generic interface calculating average heat equation solution error for different precision levels
     interface average_error
         module procedure average_error_4, average_error_8, average_error_16
@@ -17,11 +18,11 @@ contains
         allocate(A(0:N, 0:N))
         allocate(X(0:N))
         call heat_equation_solver(A, X)
-        ans = 0
+        ans = 0.0_4
         do i = 0, N
-            ans = ans + abs((A(i,i)*X(i)) - i/real(N, kind=4))
+            ans = ans + abs((X(i)/A(i,i)) - real(i, kind = 4)/real(N, kind = 4))
         end do
-        ans = ans/real((N+1), kind=4)
+        ans = ans/real((N+1), kind = 4)
         if (ALLOCATED(A)) deallocate(A)
         if (ALLOCATED(X)) deallocate(X)
     end subroutine average_error_4
@@ -33,11 +34,11 @@ contains
         allocate(A(0:N, 0:N))
         allocate(X(0:N))
         call heat_equation_solver(A, X)
-        ans = 0
+        ans = 0.0_8
         do i = 0, N
-            ans = ans + abs((A(i,i)*X(i)) - i/real(N, kind=8))
+            ans = ans + abs((X(i)/A(i,i)) - real(i, kind = 8)/real(N, kind = 8))
         end do
-        ans = ans/real((N+1), kind=8)
+        ans = ans/real((N+1), kind = 8)
         if (ALLOCATED(A)) deallocate(A)
         if (ALLOCATED(X)) deallocate(X)
     end subroutine average_error_8
@@ -49,11 +50,11 @@ contains
         allocate(A(0:N, 0:N))
         allocate(X(0:N))
         call heat_equation_solver(A, X)
-        ans = 0
+        ans = 0.0_16
         do i = 0, N
-            ans = ans + abs((A(i,i)*X(i)) - i/real(N, kind=16))
+            ans = ans + abs((X(i)/A(i,i)) - real(i, kind = 16)/real(N, kind = 16))
         end do
-        ans = ans/real((N+1), kind=16)
+        ans = ans/real((N+1), kind = 16)
         if (ALLOCATED(A)) deallocate(A)
         if (ALLOCATED(X)) deallocate(X)
     end subroutine average_error_16        
@@ -66,12 +67,12 @@ contains
         N = UBOUND(A,1)
         if (allocated(A) .AND. allocated(X)) then
             h = 1.0_4/real(N, kind = 4)
-            A(:,:) = 0
-            X(:) = 0
+            A(:,:) = 0.0_4
+            X(:) = 0.0_4
             do i = LBOUND(A,1)+1, N-1
-                A(i-1, i) = 1.0_4/(h**2.0_4)
-                A(i, i) = -2.0_4/(h**2.0_4)
-                A(i+1, i) = 1.0_4/(h**2.0_4)
+                A(i-1, i) = 1.0_4/(h*h)
+                A(i, i) = -2.0_4/(h*h)
+                A(i+1, i) = 1.0_4/(h*h)
             end do
             A(0,0) = 1.0_4
             A(N,N) = 1.0_4
@@ -88,12 +89,12 @@ contains
         N = UBOUND(A,1)
         if (allocated(A) .AND. allocated(X)) then
             h = 1.0_8/real(N, kind = 8)
-            A(:,:) = 0
-            X(:) = 0
+            A(:,:) = 0.0_8
+            X(:) = 0.0_8
             do i = LBOUND(A,1)+1, N-1
-                A(i-1, i) = 1.0_8/(h**2.0_8)
-                A(i, i) = -2.0_8/(h**2.0_8)
-                A(i+1, i) = 1.0_8/(h**2.0_8)
+                A(i-1, i) = 1.0_8/(h*h)
+                A(i, i) = -2.0_8/(h*h)
+                A(i+1, i) = 1.0_8/(h*h)
             end do
             A(0,0) = 1.0_8
             A(N,N) = 1.0_8
@@ -110,12 +111,12 @@ contains
         N = UBOUND(A,1)
         if (allocated(A) .AND. allocated(X)) then
             h = 1.0_16/real(N, kind = 16)
-            A(:,:) = 0
-            X(:) = 0
+            A(:,:) = 0.0_16
+            X(:) = 0.0_16
             do i = LBOUND(A,1)+1, N-1
-                A(i-1, i) = 1.0_16/(h**2.0_16)
-                A(i, i) = -2.0_16/(h**2.0_16)
-                A(i+1, i) = 1.0_16/(h**2.0_16)
+                A(i-1, i) = 1.0_16/(h*h)
+                A(i, i) = -2.0_16/(h*h)
+                A(i+1, i) = 1.0_16/(h*h)
             end do
             A(0,0) = 1.0_16
             A(N,N) = 1.0_16

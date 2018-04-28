@@ -1,14 +1,19 @@
 module tests
+    
     real (kind = 4), parameter :: eps4 = 0.00001_4
     real (kind = 8), parameter :: eps8 = 0.00000000000001_8
     real (kind = 16), parameter :: eps16 = 0.00000000000000000000000000000001_16
+    
     interface compare_epsilon
         module procedure compare_epsilon_4, compare_epsilon_8, compare_epsilon_16
     end interface compare_epsilon
+    
     interface gj_elim_test
         module procedure gj_elim_test_4, gj_elim_test_8, gj_elim_test_16
     end interface gj_elim_test
+
 contains
+    
     function compare_epsilon_4(a, b, e) result(x)
         real (kind = 4) :: a, b, e
         LOGICAL :: x
@@ -18,7 +23,8 @@ contains
             x = .FALSE.
         endif
     end function compare_epsilon_4
-    function compare_epsilon_8(a, b, e) result(x)
+    
+        function compare_epsilon_8(a, b, e) result(x)
         real (kind = 8) :: a, b, e
         LOGICAL :: x
         if (ABS(a - b) < e) then
@@ -27,7 +33,8 @@ contains
             x = .FALSE.
         endif
     end function compare_epsilon_8
-    function compare_epsilon_16(a, b, e) result(x)
+    
+        function compare_epsilon_16(a, b, e) result(x)
         real (kind = 16) :: a, b, e
         LOGICAL :: x
         if (ABS(a - b) < e) then
@@ -58,7 +65,8 @@ contains
             end do
         endif
     end function gj_elim_test_4
-    function gj_elim_test_8(A, X, B, Y) result(passed)
+    
+        function gj_elim_test_8(A, X, B, Y) result(passed)
         use matrix_operations, only : gj_elim
         real (kind = 8), allocatable :: A(:,:), X(:), B(:,:), Y(:)
         integer :: i, j
@@ -79,6 +87,7 @@ contains
             end do
         endif
     end function gj_elim_test_8
+
     function gj_elim_test_16(A, X, B, Y) result(passed)
         use matrix_operations, only : gj_elim
         real (kind = 16), allocatable :: A(:,:), X(:), B(:,:), Y(:)
@@ -108,13 +117,7 @@ program main
     real (kind = 4), allocatable :: A4(:,:), X4(:), B4(:,:), Y4(:)
     real (kind = 8), allocatable :: A8(:,:), X8(:), B8(:,:), Y8(:)
     real (kind = 16), allocatable :: A16(:,:), X16(:), B16(:,:), Y16(:)
-    
-    !write(*,*) "-------------------------------------------------------------------"
-    !write(*,*) "epsilon (kind = 4) =>", eps4
-    !write(*,*) "epsilon (kind = 8) =>", eps8
-    !write(*,*) "epsilon (kind = 16) =>", eps16
-    !write(*,*) "-------------------------------------------------------------------"
-    !write(*,*) 
+
     write(*,*) "-------------------------------------------------------------------"
     write (*,*) "GAUSS-JORDAN ELIMINATION TESTS (T = PASSED | F = FAILED)"
     write(*,*) "-------------------------------------------------------------------"    

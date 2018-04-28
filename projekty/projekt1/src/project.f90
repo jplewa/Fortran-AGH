@@ -12,14 +12,14 @@ program main
     write(*,*) "-------------------------------------------------------------------"    
     write(*,*) "HEAT EQUATION SOLUTION ERROR"
     do j = 1, N, M
-        call average_error(j, a4)
-        call average_error(j, a8)
-        call average_error(j, a16)
         write(*,*) "-------------------------------------------------------------------"    
         write (*,*) "N:", j
-        write(*,*) "-------------------------------------------------------------------"    
+        write(*,*) "-------------------------------------------------------------------" 
+        call average_error(j, a4)
         write (*,*) "kind =  4 | error =", a4
+        call average_error(j, a8)
         write (*,*) "kind =  8 | error =", a8
+        call average_error(j, a16)
         write (*,*) "kind = 16 | error =", a16
         write (1,*) j
         write (2,*) a4
