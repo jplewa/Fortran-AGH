@@ -3,13 +3,13 @@
 # No error checking is performed since the main Fortran program generates files with errors for the
 # three floating point precisions for N values in the same range.
 
-# Functions for axis label formatting and scaling the plots.
-# This might seem redundant, but I couldn't get the Y axis to look the way I wanted
-# especially for kind 16 precision (as the errors were very small) with any of the Julia plotting libraries
-
 using Plots
 using Formatting
 using Rsvg
+
+# Functions for axis label formatting and scaling the plots.
+# This might seem redundant, but I couldn't get the Y axis to look the way I wanted
+# for kind 16 precision (as the errors are very small) with any of the Julia plotting libraries
 
 function get_scaling_factor(A :: Array{Float64, 1})
     i = 0 :: Integer

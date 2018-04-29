@@ -1,15 +1,16 @@
 # Heat equation FDM solver and average error calculator
 Project for a university Fortran class.  
-Generates output files with the average numerical error of heat equation solutions for grids in range [1, N] with step M (where N and M are program arguments) for all three types of real number precision available in Fortran. Additionally, a JuliaLang program generates plots based on the results.
+Generates output files with the average numerical error of heat equation solutions for grids in range [1, N] with step M for all three types of real number precision available in Fortran. Additionally, a JuliaLang program generates plots based on the results.
 
 ### Prerequisites
-Tested with ifort version 18.0.1 20171018.  
-Plots generated with Julia version 0.6.2 using packages: Plots, PlotlyJS, RSVG.  
-To add those packages run
+Tested with ifort 18.0.1 20171018.  
+Plots generated with Julia 0.6.2 using packages: Plots, PlotlyJS, RSVG, and Formatting.
+To add those packages, run
 ```
 Pkg.add("Plots")
 Pkg.add("PlotlyJS")
 Pkg.add("RSVG")
+Pkg.add("Formatting")
 Pkg.update()
 ```
 in your Julia console.
@@ -52,3 +53,9 @@ The plots will be saved in the following location:
 ./out/plots/
 ```
 in the PDF format.
+
+### Entire project
+Alternatively, to complete all of the steps mentioned above - run the tests, build the project, run the program specifically for N in range [1,1000], and then plot the results - you can type
+```
+make all
+```
