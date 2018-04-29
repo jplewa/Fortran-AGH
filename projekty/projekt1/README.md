@@ -29,14 +29,14 @@ make build
 ### Running
 After building, run the program with
 ```
-./bin/project
+./bin/project N M
 ```
-and provide N and M values as described above.  
+to generate files with errors for grids in range [1,N] each time incrementing by M.
 Output files for the respective real number kinds can be found in:
 ```
 ./out/results/
 ```
-For plotting purposes, an additional file with the grid sizes is generated as well.
+For plotting purposes, an additional file with grid sizes is generated as well.
 
 ### Plotting
 To generate plots with the results from 
