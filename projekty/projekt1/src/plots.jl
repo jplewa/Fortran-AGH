@@ -3,10 +3,13 @@
 # No error checking is performed since the main Fortran program generates files with errors for the
 # three floating point precisions for N values in the same range.
 
-
 # Functions for axis label formatting and scaling the plots.
-# This might seem redundant, but I couldn't get the Y axis to look the way I wanted 
+# This might seem redundant, but I couldn't get the Y axis to look the way I wanted
 # especially for kind 16 precision (as the errors were very small) with any of the Julia plotting libraries
+
+using Plots
+using Formatting
+using Rsvg
 
 function get_scaling_factor(A :: Array{Float64, 1})
     i = 0 :: Integer
@@ -48,45 +51,30 @@ close(fx)
 close(fy4)
 close(fy8)
 close(fy16)
+
 i = get_scaling_factor(yAxis4)
 suf = get_superscript(i)
-yAxis4 = map(x -> Float64(x)*Float64(10)^i, yAxis4)
-yAxis8 = map(x -> Float64(x)*Float64(10)^i, yAxis8)
-yAxis16 = map(x -> Float64(x)*Float64(10)^i, yAxis16)
-using Plots
+y4 = map(x -> Float64(x)*Float64(10)^i, yAxis4)
+y8 = map(x -> Float64(x)*Float64(10)^i, yAxis8)
+y16 = map(x -> Float64(x)*Float64(10)^i, yAxis16)
 plotlyjs()
-using Formatting
-plot(xAxis, yAxis4, label = "kind 4", yformatter = :scientific, title = "Average error", yformatter = x -> format(Float64(x), suffix = string("×10",suf), precision = 1))
-plot!(xAxis, yAxis8, label="kind 8")
-plot!(xAxis, yAxis16, label="kind 16")
-using Rsvg
+plot(xAxis, y4, label = "kind 4", yformatter = :scientific, title = "Average error", yformatter = x -> format(Float64(x), suffix = string("×10",suf), precision = 1))
+plot!(xAxis, y8, label="kind 8")
+plot!(xAxis, y16, label="kind 16")
 savefig("out/plots/kind_4_8_16.pdf")
 
-fy8 = open("out/results/kind8")
-fy16 = open("out/results/kind16")
-yAxis8 = map(x -> parse(Float64,x), readlines(fy8))
-yAxis16 = map(x -> parse(Float64,x), readlines(fy16))
-close(fy8)
-close(fy16)
 i = get_scaling_factor(yAxis8)
 suf = get_superscript(i)
-yAxis8 = map(x -> Float64(x)*Float64(10)^i, yAxis8)
-yAxis16 = map(x -> Float64(x)*Float64(10)^i, yAxis16)
-using Plots
+y8 = map(x -> Float64(x)*Float64(10)^i, yAxis8)
+y16 = map(x -> Float64(x)*Float64(10)^i, yAxis16)
 plotlyjs()
-plot(xAxis, yAxis8, label = "kind 8", yformatter = :scientific, title = "Average error", yformatter = x -> format(Float64(x), suffix = string("×10",suf), precision = 1))
-plot!(xAxis, yAxis16, label="kind 16")
-using Rsvg
+plot(xAxis, y8, label = "kind 8", yformatter = :scientific, title = "Average error", yformatter = x -> format(Float64(x), suffix = string("×10",suf), precision = 1))
+plot!(xAxis, y16, label="kind 16")
 savefig("out/plots/kind_8_16.pdf")
 
-fy16 = open("out/results/kind16")
-yAxis16 = map(x -> parse(Float64,x), readlines(fy16))
-close(fy16)
 i = get_scaling_factor(yAxis16)
 suf = get_superscript(i)
-yAxis16 = map(x -> Float64(x)*Float64(10)^i, yAxis16)
-using Plots
+y16 = map(x -> Float64(x)*Float64(10)^i, yAxis16)
 plotlyjs()
-plot(xAxis, yAxis16, label="kind 16", title="Average error", yformatter = x -> format(Float64(x), suffix = string("×10",suf), precision = 1))
-using Rsvg
+plot(xAxis, y16, label="kind 16", title="Average error", yformatter = x -> format(Float64(x), suffix = string("×10",suf), precision = 1))
 savefig("out/plots/kind_16.pdf")

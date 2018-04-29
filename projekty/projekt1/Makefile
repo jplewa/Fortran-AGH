@@ -1,5 +1,5 @@
 IFORT = ifort
-OPTIONS = -std08 -module . -free -implicitnone -cpp -warn all -check bounds -fast
+OPTIONS = -std08 -module . -free -implicitnone -cpp -warn all -check bounds
 
 all: 
 	make build
