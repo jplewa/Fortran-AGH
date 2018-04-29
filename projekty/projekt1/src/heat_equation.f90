@@ -20,7 +20,7 @@ contains
         call heat_equation_solver(A, X)
         ans = 0.0_4
         do i = 0, N
-            ans = ans + abs((X(i)/A(i,i)) - real(i, kind = 4)/real(N, kind = 4))
+            ans = ans + abs((X(i)/A(i,i)) - (real(i, kind = 4)/real(N, kind = 4)))
         end do
         ans = ans/real((N+1), kind = 4)
         if (ALLOCATED(A)) deallocate(A)
@@ -36,7 +36,7 @@ contains
         call heat_equation_solver(A, X)
         ans = 0.0_8
         do i = 0, N
-            ans = ans + abs((X(i)/A(i,i)) - real(i, kind = 8)/real(N, kind = 8))
+            ans = ans + abs((X(i)/A(i,i)) - (real(i, kind = 8)/real(N, kind = 8)))
         end do
         ans = ans/real((N+1), kind = 8)
         if (ALLOCATED(A)) deallocate(A)
@@ -63,16 +63,17 @@ contains
         use matrix_operations, only : gj_elim
         integer ::  i, N
         real (kind = 4), allocatable :: A(:, :), X(:)
-        real (kind = 4) :: h
+        real (kind = 4) :: P1, P2
         N = UBOUND(A,1)
         if (allocated(A) .AND. allocated(X)) then
-            h = 1.0_4/real(N, kind = 4)
             A(:,:) = 0.0_4
             X(:) = 0.0_4
+            P1 = 1.0_4*real(N, kind = 4)*real(N, kind = 4)
+            P2 = -2.0_4 * P1
             do i = LBOUND(A,1)+1, N-1
-                A(i-1, i) = 1.0_4/(h*h)
-                A(i, i) = -2.0_4/(h*h)
-                A(i+1, i) = 1.0_4/(h*h)
+                A(i-1, i) = P1
+                A(i, i) = P2
+                A(i+1, i) = P1
             end do
             A(0,0) = 1.0_4
             A(N,N) = 1.0_4
@@ -85,16 +86,17 @@ contains
         use matrix_operations, only : gj_elim
         integer :: i, N
         real (kind = 8), allocatable :: A(:, :), X(:)
-        real (kind = 8) :: h
+        real (kind = 8) :: P1, P2
         N = UBOUND(A,1)
         if (allocated(A) .AND. allocated(X)) then
-            h = 1.0_8/real(N, kind = 8)
             A(:,:) = 0.0_8
             X(:) = 0.0_8
+            P1 = 1.0_8*real(N, kind = 8)*real(N, kind = 8)
+            P2 = -2.0_8 * P1
             do i = LBOUND(A,1)+1, N-1
-                A(i-1, i) = 1.0_8/(h*h)
-                A(i, i) = -2.0_8/(h*h)
-                A(i+1, i) = 1.0_8/(h*h)
+                A(i-1, i) = P1
+                A(i, i) = P2
+                A(i+1, i) = P1
             end do
             A(0,0) = 1.0_8
             A(N,N) = 1.0_8
@@ -107,16 +109,17 @@ contains
         use matrix_operations, only : gj_elim
         integer :: i, N
         real (kind = 16), allocatable :: A(:, :), X(:)
-        real (kind = 16) :: h
+        real (kind = 16) :: P1, P2
         N = UBOUND(A,1)
         if (allocated(A) .AND. allocated(X)) then
-            h = 1.0_16/real(N, kind = 16)
             A(:,:) = 0.0_16
             X(:) = 0.0_16
+            P1 = 1.0_16*real(N, kind = 16)*real(N, kind = 16)
+            P2 = -2.0_16 * P1
             do i = LBOUND(A,1)+1, N-1
-                A(i-1, i) = 1.0_16/(h*h)
-                A(i, i) = -2.0_16/(h*h)
-                A(i+1, i) = 1.0_16/(h*h)
+                A(i-1, i) = P1
+                A(i, i) = P2
+                A(i+1, i) = P1
             end do
             A(0,0) = 1.0_16
             A(N,N) = 1.0_16

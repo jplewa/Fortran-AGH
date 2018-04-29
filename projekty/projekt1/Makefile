@@ -22,7 +22,7 @@ test:
 	./bin/tests
 
 project:
-	 ./bin/project
+	 ./bin/project 200 1
 
 plots: 
 	 julia src/plots.jl
