@@ -18,7 +18,7 @@ in your Julia console.
 ### Testing
 Tests of the Gauss-Jordan matrix elimination algorithm can be run with:
 ```
-make tests
+make test
 ```
 
 ### Building
