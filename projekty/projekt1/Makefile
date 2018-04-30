@@ -25,4 +25,4 @@ project:
 	 ./bin/project 1000 1
 
 plots: 
-	 julia src/plots.jl
+	 julia src/julia/plots.jl
