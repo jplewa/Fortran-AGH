@@ -69,7 +69,7 @@ contains
             A(:,:) = 0.0_4
             X(:) = 0.0_4
             P1 = 1.0_4*real(N, kind = 4)*real(N, kind = 4)
-            P2 = -2.0_4 * P1
+            P2 = -2.0_4*P1
             do i = LBOUND(A,1)+1, N-1
                 A(i-1, i) = P1
                 A(i, i) = P2
@@ -92,7 +92,7 @@ contains
             A(:,:) = 0.0_8
             X(:) = 0.0_8
             P1 = 1.0_8*real(N, kind = 8)*real(N, kind = 8)
-            P2 = -2.0_8 * P1
+            P2 = -2.0_8*P1
             do i = LBOUND(A,1)+1, N-1
                 A(i-1, i) = P1
                 A(i, i) = P2
@@ -115,7 +115,7 @@ contains
             A(:,:) = 0.0_16
             X(:) = 0.0_16
             P1 = 1.0_16*real(N, kind = 16)*real(N, kind = 16)
-            P2 = -2.0_16 * P1
+            P2 = -2.0_16*P1
             do i = LBOUND(A,1)+1, N-1
                 A(i-1, i) = P1
                 A(i, i) = P2
