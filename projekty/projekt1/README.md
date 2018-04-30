@@ -16,7 +16,7 @@ Pkg.update()
 in your Julia console.
 
 ### Testing
-Tests of Gauss-Jordan matrix elimination can be run with:
+Tests of the Gauss-Jordan matrix elimination algorithm can be run with:
 ```
 make tests
 ```
