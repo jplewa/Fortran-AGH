@@ -1,21 +1,16 @@
-PFUNIT = /opt/pfunit/pfunit-serial
-F90_VENDOR = Intel
+.PHONY: test plots
 
-include $(PFUNIT)/include/base.mk
+test: 
+	make -C test test
+	make -C test
+	./bin/test
 
-FFLAGS += -std08 -warn all -pedantic -funroll-loops -I$(PFUNIT)/mod
-LIBS = $(PFUNIT)/lib/libpfunit$(LIB_EXT)
-
-PFS = $(wildcard *.pf)
-OBJS = $(PFS:.pf=.o)
-
-%.F90: %.pf
-	$(PFUNIT)/bin/pFUnitParser.py $< $@
-
-%.o: %.F90
-	$(F90) $(FFLAGS) -c $<
-
-test: testSuites.inc mult.o $(OBJS)
-	$(F90) -o $@ -I$(PFUNIT)/mod -I$(PFUNIT)/include \
-		$(PFUNIT)/include/driver.F90 \
-./*$(OBJ_EXT) $(LIBS) $(FFLAGS)
+plots:  
+	ifort -c ./src/mult.F90 -std08 -O2 -warn all -pedantic -funroll-loops
+	ifort -o ./bin/mult_time ./src/mult_time.F90 mult.o -std08 -O2 -warn all -pedantic -funroll-loops
+	make clean
+	./bin/mult_time
+	julia ./src/julia/plots.jl
+clean:
+	rm -f *.o *.mod *.i90 *~ *.tmp *.s *.dbg
+	rm -f -r *.dSYM
