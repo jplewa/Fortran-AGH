@@ -28,12 +28,12 @@ contains
     !macierze 1 × N oraz N × 1 (obie kombinacje
     @Test 
     subroutine mm1_Nx1_1xN_test()
-        real (kind = 8) :: m1(1,100), m2(100,1), result(100,100), correct(100,100)
+        real (kind = 8) :: m1(1,100), m2(100,1), result(1,1), correct(1,1)
         integer (kind = 4) :: error
 
         m1 = 1.d0
         m2 = 3.d0
-        correct = 3.d0
+        correct = 3.d0*100
 
         call mm1(m1, m2, result, error)
 
@@ -44,12 +44,12 @@ contains
     @Test 
     subroutine mm1_1xN_Nx1_test()
 
-        real (kind = 8) :: m1(100,1), m2(1,100), result(1,1), correct(1,1)
+        real (kind = 8) :: m1(100,1), m2(1,100), result(100,100), correct(100,100)
         integer (kind = 4) :: error
         
         m1 = 1.d0
         m2 = 3.d0
-        correct = 3.d0 * 100
+        correct = 3.d0
 
         call mm1(m1, m2, result, error)
         
@@ -62,7 +62,7 @@ contains
     @Test 
     subroutine mm1_large1_test()
 
-        real (kind = 8) :: m1(750,1000), m2(500,750), result(500,1000), correct(500,1000)
+        real (kind = 8) :: m1(500,750), m2(750,1000), result(500,1000), correct(500,1000)
         integer (kind = 4) :: error
         
         m1 = 1.d0
@@ -79,7 +79,7 @@ contains
     @Test 
     subroutine mm1_large2_test()
 
-        real (kind = 8) :: m1(450, 2000), m2(500, 450), result(500, 2000), correct(500, 2000)
+        real (kind = 8) :: m1(500, 450), m2(450, 2000), result(500, 2000), correct(500, 2000)
         integer (kind = 4) :: error
         
         m1 = 1.d0
@@ -135,12 +135,12 @@ contains
         real (kind = 8) :: m1(2,2), m2(2,2), result(2,2), correct(2,2)
         integer (kind = 4) :: error
         
-        m1(1,:) = [1,3]
-        m1(2,:) = [2,4]
-        m2(1,:) = [2,1]
-        m2(2,:) = [0,2]
-        correct(1,:) = [4,10]
-        correct(2,:) = [4,8]
+        m1(1,:) = [1,2]
+        m1(2,:) = [3,4]
+        m2(1,:) = [2,0]
+        m2(2,:) = [1,2]
+        correct(1,:) = [4,4]
+        correct(2,:) = [10,8]
 
         call mm1(m1, m2, result, error)
         
@@ -152,16 +152,16 @@ contains
     @Test 
     subroutine mm1_standard2_test()
 
-        real (kind = 8) :: m1(3,2), m2(2,3), result(2,2), correct(2,2)
+        real (kind = 8) :: m1(2,3), m2(3,2), result(2,2), correct(2,2)
         integer (kind = 4) :: error
         
-        m1(1,:) = [1,-1]
-        m1(2,:) = [0,3]
-        m1(3,:) = [2,1]
-        m2(1,:) = [3,2,1]
-        m2(2,:) = [1,1,0]
-        correct(1,:) = [5,4]
-        correct(2,:) = [1,2]
+        m1(1,:) = [1,0,2]
+        m1(2,:) = [-1,3,1]
+        m2(1,:) = [3,1]
+        m2(2,:) = [2,1]
+        m2(3,:) = [1,0]
+        correct(1,:) = [5,1]
+        correct(2,:) = [4,2]
 
         call mm1(m1, m2, result, error)
         
@@ -173,16 +173,21 @@ contains
     @Test
     subroutine mm1_standard3_test()
 
-        real (kind = 8) :: m1(3,4), m2(2,3), result(2,4), correct(2,4)
+        real (kind = 8) :: m1(4,3), m2(3,2), result(4,2), correct(4,2)
         integer (kind = 4) :: error
-        
-        m1(1,:) = [1,-1,0,0]
-        m1(2,:) = [2,2,1,4]
-        m1(3,:) = [3,3,3,5]
-        m2(1,:) = [4,1,-2]
-        m2(2,:) = [0,2,3]
-        correct(1,:) = [0,-8,-5,-6]
-        correct(2,:) = [13,13,11,23]
+
+        m1(1,:) = [1,2,3]
+        m1(2,:) = [-1,2,3]
+        m1(3,:) = [0,1,3]
+        m1(4,:) = [0,4,5]
+
+        m2(1,:) = [4,0]
+        m2(2,:) = [1,2]
+        m2(3,:) = [-2,3]
+        correct(1,:) = [0,13]
+        correct(2,:) = [-8,13]
+        correct(3,:) = [-5,11]
+        correct(4,:) = [-6,23]
 
         call mm1(m1, m2, result, error)
         
@@ -194,15 +199,16 @@ contains
     @Test
     subroutine mm1_standard4_test()
 
-        real (kind = 8) :: m1(3,1), m2(4,3), result(4,1), correct(4,1)
+        real (kind = 8) :: m1(1,3), m2(3,4), result(1,4), correct(1,4)
         integer (kind = 4) :: error
         
-        m1(:,1) = [3,4,2]
-        m2(1,:) = [13,8,6]
-        m2(2,:) = [9,7,4]
-        m2(3,:) = [7,4,0]
-        m2(4,:) = [15,6,3]
-        correct(:,1) = [83,63,37,75]
+        m1(1,:) = [3,4,2]
+
+        m2(1,:) = [13,9,7,15]
+        m2(2,:) = [8,7,4,6]
+        m2(3,:) = [6,4,0,3]
+
+        correct(1,:) = [83,63,37,75]
 
         call mm1(m1, m2, result, error)
         
@@ -211,184 +217,188 @@ contains
 
     end subroutine
 
-    ! dwie macierze 1x1
+! dwie macierze 1x1
     @Test 
     subroutine mm2_1x1_test()
-         
+
         real (kind = 8) :: m1(1,1), m2(1,1), result(1,1), correct(1,1)
         integer (kind = 4) :: error
         
         m1 = 1.d0
         m2 = 3.d0
         correct = 3.d0
-        
-        call mm2(m1, m2, result, error)
-        
-        @assertEqual(error, 0)
-        @assertEqual(result, correct)
-        
-    end subroutine
-    
-    !macierze 1 × N oraz N × 1 (obie kombinacje
-    @Test 
-    subroutine mm2_Nx1_1xN_test()
-    
-        real (kind = 8) :: m1(1,100), m2(100,1), result(100,100), correct(100,100)
-        integer (kind = 4) :: error
-        m1 = 1.d0
-        m2 = 3.d0
-        correct = 3.d0
-         
+
         call mm2(m1, m2, result, error)
         
         @assertEqual(error, 0)
         @assertEqual(result, correct)
 
     end subroutine
+
+    !macierze 1 × N oraz N × 1 (obie kombinacje
+    @Test 
+    subroutine mm2_Nx1_1xN_test()
+        real (kind = 8) :: m1(1,100), m2(100,1), result(1,1), correct(1,1)
+        integer (kind = 4) :: error
+
+        m1 = 1.d0
+        m2 = 3.d0
+        correct = 3.d0*100
+
+        call mm2(m1, m2, result, error)
+
+        @assertEqual(error, 0)
+        @assertEqual(result, correct)
+    end subroutine
     
     @Test 
     subroutine mm2_1xN_Nx1_test()
-         
-        real (kind = 8) :: m1(100,1), m2(1,100), result(1,1), correct(1,1)
+
+        real (kind = 8) :: m1(100,1), m2(1,100), result(100,100), correct(100,100)
         integer (kind = 4) :: error
         
         m1 = 1.d0
         m2 = 3.d0
-        correct = 3.d0 * 100
-        
+        correct = 3.d0
+
         call mm2(m1, m2, result, error)
         
         @assertEqual(error, 0)
         @assertEqual(result, correct)
-     
+
     end subroutine
-    
+
     ! macierze bardzo duże
     @Test 
     subroutine mm2_large1_test()
-    
-        real (kind = 8) :: m1(750,1000), m2(500,750), result(500,1000), correct(500,1000)
+
+        real (kind = 8) :: m1(500,750), m2(750,1000), result(500,1000), correct(500,1000)
         integer (kind = 4) :: error
         
         m1 = 1.d0
         m2 = 3.d0
         correct = 3.d0*750
-    
+
         call mm2(m1, m2, result, error)
         
         @assertEqual(error, 0)
         @assertEqual(result, correct)
-    
+
     end subroutine
 
     @Test 
     subroutine mm2_large2_test()
-    
-        real (kind = 8) :: m1(450, 2000), m2(500, 450), result(500, 2000), correct(500, 2000)
+
+        real (kind = 8) :: m1(500, 450), m2(450, 2000), result(500, 2000), correct(500, 2000)
         integer (kind = 4) :: error
         
         m1 = 1.d0
         m2 = 3.d0
         correct = 3.d0*450
-    
+
         call mm2(m1, m2, result, error)
         
         @assertEqual(error, 0)
         @assertEqual(result, correct)
-    
+
     end subroutine
-    
+
     ! macierze, których rozmiary matematycznie nie pozwalają na poprawne pomnożenie
     @Test 
     subroutine mm2_incorrect1_test()
-    
+
         real (kind = 8) :: m1(2000,750), m2(500,750), result(500,750), correct(500,750)
         integer (kind = 4) :: error
         
         m1 = 1.d0
         m2 = 3.d0
         correct = 0
-    
+
         call mm2(m1, m2, result, error)
         
         @assertEqual(error, 1)
         @assertEqual(result, correct)
-    
+
     end subroutine
-     
+
     @Test 
     subroutine mm2_incorrect2_test()
-     
+
         real (kind = 8) :: m1(100,50), m2(50,100), result(100,50), correct(100,50)
         integer (kind = 4) :: error
         
         m1 = 1.d0
         m2 = 3.d0
         correct = 0
-    
+
         call mm2(m1, m2, result, error)
         
         @assertEqual(error, 2)
         @assertEqual(result, correct)
 
     end subroutine
-    
+
     ! przypadek “standardowy” z macierzami prostokątnymi małych rozmiarów
     @Test 
     subroutine mm2_standard1_test()
-    
+
         real (kind = 8) :: m1(2,2), m2(2,2), result(2,2), correct(2,2)
         integer (kind = 4) :: error
         
-        m1(1,:) = [1,3]
-        m1(2,:) = [2,4]
-        m2(1,:) = [2,1]
-        m2(2,:) = [0,2]
-        correct(1,:) = [4,10]
-        correct(2,:) = [4,8]
-    
-        call mm2(m1, m2, result, error)
-        
-        @assertEqual(error, 0)
-        @assertEqual(result, correct)
-    
-    end subroutine
-    
-    @Test 
-    subroutine mm2_standard2_test()
-        
-        real (kind = 8) :: m1(3,2), m2(2,3), result(2,2), correct(2,2)
-        integer (kind = 4) :: error
-        
-        m1(1,:) = [1,-1]
-        m1(2,:) = [0,3]
-        m1(3,:) = [2,1]
-        m2(1,:) = [3,2,1]
-        m2(2,:) = [1,1,0]
-        correct(1,:) = [5,4]
-        correct(2,:) = [1,2]
-        
+        m1(1,:) = [1,2]
+        m1(2,:) = [3,4]
+        m2(1,:) = [2,0]
+        m2(2,:) = [1,2]
+        correct(1,:) = [4,4]
+        correct(2,:) = [10,8]
+
         call mm2(m1, m2, result, error)
         
         @assertEqual(error, 0)
         @assertEqual(result, correct)
 
-     end subroutine
+    end subroutine
+
+    @Test 
+    subroutine mm2_standard2_test()
+
+        real (kind = 8) :: m1(2,3), m2(3,2), result(2,2), correct(2,2)
+        integer (kind = 4) :: error
+        
+        m1(1,:) = [1,0,2]
+        m1(2,:) = [-1,3,1]
+        m2(1,:) = [3,1]
+        m2(2,:) = [2,1]
+        m2(3,:) = [1,0]
+        correct(1,:) = [5,1]
+        correct(2,:) = [4,2]
+
+        call mm2(m1, m2, result, error)
+        
+        @assertEqual(error, 0)
+        @assertEqual(result, correct)
+
+    end subroutine
     
     @Test
     subroutine mm2_standard3_test()
-        
-        real (kind = 8) :: m1(3,4), m2(2,3), result(2,4), correct(2,4)
+
+        real (kind = 8) :: m1(4,3), m2(3,2), result(4,2), correct(4,2)
         integer (kind = 4) :: error
-        
-        m1(1,:) = [1,-1,0,0]
-        m1(2,:) = [2,2,1,4]
-        m1(3,:) = [3,3,3,5]
-        m2(1,:) = [4,1,-2]
-        m2(2,:) = [0,2,3]
-        correct(1,:) = [0,-8,-5,-6]
-        correct(2,:) = [13,13,11,23]
-        
+
+        m1(1,:) = [1,2,3]
+        m1(2,:) = [-1,2,3]
+        m1(3,:) = [0,1,3]
+        m1(4,:) = [0,4,5]
+
+        m2(1,:) = [4,0]
+        m2(2,:) = [1,2]
+        m2(3,:) = [-2,3]
+        correct(1,:) = [0,13]
+        correct(2,:) = [-8,13]
+        correct(3,:) = [-5,11]
+        correct(4,:) = [-6,23]
+
         call mm2(m1, m2, result, error)
         
         @assertEqual(error, 0)
@@ -398,22 +408,81 @@ contains
 
     @Test
     subroutine mm2_standard4_test()
-        
-        real (kind = 8) :: m1(3,1), m2(4,3), result(4,1), correct(4,1)
+
+        real (kind = 8) :: m1(1,3), m2(3,4), result(1,4), correct(1,4)
         integer (kind = 4) :: error
         
-        m1(:,1) = [3,4,2]
-        m2(1,:) = [13,8,6]
-        m2(2,:) = [9,7,4]
-        m2(3,:) = [7,4,0]
-        m2(4,:) = [15,6,3]
-        correct(:,1) = [83,63,37,75]
-        
+        m1(1,:) = [3,4,2]
+
+        m2(1,:) = [13,9,7,15]
+        m2(2,:) = [8,7,4,6]
+        m2(3,:) = [6,4,0,3]
+
+        correct(1,:) = [83,63,37,75]
+
         call mm2(m1, m2, result, error)
         
         @assertEqual(error, 0)
         @assertEqual(result, correct)
 
     end subroutine
+    
+    @Test
+    subroutine mm1_mm2_matmul_test1()
+        
+        real (kind = 8) :: m1(500,250), m2(250,1000), r1(500,1000), r2(500,1000),r3(500,1000)
+        integer (kind = 4) :: error
+        
+        call RANDOM_NUMBER(m1)
+        call RANDOM_NUMBER(m2)
+        
+        call mm1(m1, m2, r1, error)
+        call mm2(m1, m2, r2, error)
+        r3 = matmul(m1,m2)
+
+        @assertEqual(error, 0)
+        @assertEqual(r1, r3)
+        @assertEqual(r2, r3)
+
+    end subroutine
+
+    @Test
+    subroutine mm1_mm2_matmul_test2()
+        
+        real (kind = 8) :: m1(1,1000), m2(1000,1), r1(1,1), r2(1,1), r3(1,1)
+        integer (kind = 4) :: error
+        
+        call RANDOM_NUMBER(m1)
+        call RANDOM_NUMBER(m2)
+        
+        call mm1(m1, m2, r1, error)
+        call mm2(m1, m2, r2, error)
+        r3 = matmul(m1,m2)
+
+        @assertEqual(error, 0)
+        @assertEqual(r1, r3)
+        @assertEqual(r2, r3)
+
+    end subroutine
+
+    @Test
+    subroutine mm1_mm2_matmul_test3()
+        
+        real (kind = 8) :: m1(1000,1), m2(1,1000), r1(1000,1000), r2(1000,1000), r3(1000,1000)
+        integer (kind = 4) :: error
+        
+        call RANDOM_NUMBER(m1)
+        call RANDOM_NUMBER(m2)
+        
+        call mm1(m1, m2, r1, error)
+        call mm2(m1, m2, r2, error)
+        r3 = matmul(m1,m2)
+
+        @assertEqual(error, 0)
+        @assertEqual(r1, r3)
+        @assertEqual(r2, r3)
+
+    end subroutine
+
 
 end module

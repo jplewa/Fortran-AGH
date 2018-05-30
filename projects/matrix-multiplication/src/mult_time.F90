@@ -12,7 +12,7 @@ program main
     open(unit = 3, file = "./out/results/matmul")
     open(unit = 4, file = "./out/results/N")
     
-    do i = 1, 501, 10
+    do i = 1, 1001, 10
     
         write (4, *) i
     
