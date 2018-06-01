@@ -15,7 +15,7 @@ program main
     open(unit = 5, file = "./out/results/matmul")
     open(unit = 6, file = "./out/results/N")
     
-    do i = 1, 1501, 20
+    do i = 1, 1001, 20
     
         write (6, *) (i)
     
