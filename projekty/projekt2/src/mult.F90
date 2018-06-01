@@ -1,4 +1,4 @@
-#define ichunk 256
+#define ichunk 512
 
 module mult
 
