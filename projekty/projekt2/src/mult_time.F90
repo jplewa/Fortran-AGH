@@ -15,13 +15,13 @@ program main
     open(unit = 5, file = "./out/results/matmul")
     open(unit = 6, file = "./out/results/N")
     
-    do i = 0,11
+    do i = 1, 1001, 10
     
-        write (6, *) (2**i)
+        write (6, *) (i)
     
-        allocate(m1((2**i),(2**i)))
-        allocate(m2((2**i),(2**i)))
-        allocate(result((2**i),(2**i)))
+        allocate(m1(i,i))
+        allocate(m2(i,i))
+        allocate(result(i,i))
     
         call RANDOM_NUMBER(m1)
         call RANDOM_NUMBER(m2)

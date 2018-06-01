@@ -5,6 +5,7 @@ test:
 	ifort -c ./src/mult.F90 $(FLAGS)
 	make -C test test
 	make -C test
+	make clean
 	./bin/test
 
 plots:  
