@@ -4,7 +4,8 @@ program main
 
     implicit none
 
-    integer (kind = 4) :: i, error, before, after, ticks
+    integer (kind = 4) :: i, error
+    integer (kind = 8) :: before, after, ticks
     real (kind = 8), allocatable :: m1(:,:), m2(:,:), result(:,:)
     
     open(unit = 1, file = "./out/results/mm1")
