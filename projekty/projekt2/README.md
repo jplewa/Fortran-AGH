@@ -1,6 +1,6 @@
 # Matrix multiplication
 Project for a university Fortran class.  
-Generates output files with time measurements of three different matrix multiplication methods and plots them.
+Generates output files with time measurements of five different matrix multiplication methods and plots them.
 
 ### Prerequisites
 Tested with ifort 18.0.1 20171018.  
@@ -14,7 +14,7 @@ Pkg.update()
 in your Julia console.
 
 ### Testing
-Tests of the two matrix multiplication algorithms can be built and run with:
+Tests of the five matrix multiplication algorithms can be built and run with:
 ```
 make test
 ```
