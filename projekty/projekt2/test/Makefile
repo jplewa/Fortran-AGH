@@ -3,7 +3,7 @@ F90_VENDOR = Intel
 
 include $(PFUNIT)/include/base.mk
 
-FFLAGS += -std08 -funroll-loops -I$(PFUNIT)/mod
+FFLAGS += -std08 -funroll-loops -I$(PFUNIT)/mod -heap-arrays
 LIBS = $(PFUNIT)/lib/libpfunit$(LIB_EXT)
 
 PFS = $(wildcard *.pf)
