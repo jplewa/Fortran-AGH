@@ -6,7 +6,7 @@ Performs matrix operations sequentially and in a parallel way.
 
 The three excercises are:
 
-* `ex1` - sequential matrix multiplication and Gauss elimination and connecting Fortran with Python
+* `ex1` - sequential matrix multiplication and Gauss elimination - intergating Fortran with Python
 * `ex2` - parallel matrix multiplication
 * `ex3` - time measurements of both matrix multiplication methods
 
