@@ -8,7 +8,7 @@ print(numpy.transpose(numpy.array(A).reshape(3,3)))
 print(X)
 
 print("Result")
-(B, Y, _) = mat_ops.mat_ops.gauss(numpy.array(A).reshape(3,3),numpy.array(X).reshape(3), 3)
+(B, Y, _) = mat_ops.sequential_mat_ops.gauss(numpy.array(A).reshape(3,3),numpy.array(X).reshape(3), 3)
 print(numpy.transpose(numpy.array(B).reshape(3,3)))
 print(Y)
 
@@ -19,5 +19,5 @@ print(numpy.transpose(numpy.array(M1).reshape(3,3)))
 print(numpy.transpose(numpy.array(M2).reshape(3,3)))
 
 print("Result")
-R = mat_ops.mat_ops.mm(numpy.transpose(numpy.array(M1).reshape(3,3)),numpy.transpose(numpy.array(M2).reshape(3,3)), 3)
+R = mat_ops.sequential_mat_ops.mm(numpy.transpose(numpy.array(M1).reshape(3,3)),numpy.transpose(numpy.array(M2).reshape(3,3)), 3)
 print(numpy.array(R).reshape(3,3))

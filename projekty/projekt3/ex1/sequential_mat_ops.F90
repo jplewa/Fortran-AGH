@@ -1,4 +1,17 @@
-module co_mat_ops
+!------------------------------------------------------------------------------
+! MODULE: sequential_mat_ops
+!
+!> @author
+!> Julia Plewa
+!
+! DESCRIPTION: 
+!> This module contains sequential matrix operations.
+!
+! REVISION HISTORY:
+! 18 06 2018 - Initial version
+!------------------------------------------------------------------------------
+
+module sequential_mat_ops
     
     implicit none
 
@@ -9,17 +22,16 @@ module co_mat_ops
     !> Julia Plewa
     !
     ! DESCRIPTION:
-    !> 
+    !> Sequential Gauss-Jordan elimination algorithm.
     !> 
     !> 
     !
     ! REVISION HISTORY:
     ! 19 06 2018 - Initial Version
     !
-    !> @param[in] n - number of functions on the knot minus one
-    !> @param[in] p - degree of polynomial
-    !> @param[out] U - array to fill with points
-    !> @param[out] nelem - number of elements
+    !> @param[inout] A - coefficient matrix of size NxN
+    !> @param[inout] X - constant term vector of size N
+    !> @param[in] N - size
     !—————————————————————————
 
     subroutine gauss(A, X, N)!B, Y, N)
@@ -27,6 +39,7 @@ module co_mat_ops
         integer, intent(in) :: N
         real (kind = 8), intent(inout) :: A(N,N), X(N)
         real (kind = 8) :: c
+        !f2py intent(in,out) :: A, X, N
 
         do i = 1, N
             do j = 1, N
@@ -47,58 +60,37 @@ module co_mat_ops
     !> Julia Plewa
     !
     ! DESCRIPTION:
-    !> 
+    !> Sequential square matrix multiplication algorithm.
     !> 
     !> 
     !
     ! REVISION HISTORY:
     ! 19 06 2018 - Initial Version
     !
-    !> @param[in] n - number of functions on the knot minus one
-    !> @param[in] p - degree of polynomial
-    !> @param[out] U - array to fill with points
-    !> @param[out] nelem - number of elements
+    !> @param[in] m1 - first matrix of size NxN
+    !> @param[in] m2 - second matrix of size NxN
+    !> @param[in] N - size of matrices
+    !> @param[out] result - resulting matrix
     !—————————————————————————
 
     subroutine mm(m1, m2, N, result)
         integer, intent(in) :: N
         real (kind = 8), intent(in) :: m1(N,N), m2(N,N)
-        real (kind = 8), allocatable, codimension[:] :: n1(:,:), n2(:,:)
-        real (kind = 8), allocatable, codimension[:] :: tmp(:,:)
         real (kind = 8), intent(out) :: result(N,N)
         integer (kind = 4) :: i, j, k
 
-        syncall()
-        allocate(n1(N,N)[*])
-        allocate(n2(N,N)[*])
-        allocate(tmp(N,N)[*])
-        n1 = m1
-        n2 = m2
+        !f2py intent(in) :: m1, m2, N
+        !f2py intent(out) :: result
 
-        syncall()
-
-        tmp = 0.d0
+        result = 0.d0
 
         do j = 1, N
-            do i = 1+(this_image()-1)*N/num_images(),this_image()*N/num_images()
-                do k = 1, N
-                    tmp(i, j) = tmp(i, j) + n1(i,k)*n2(k,j)
+            do k = 1, N
+                do i = 1, N
+                    result(i,j) = result(i,j) + m1(i,k) * m2(k,j)
                 end do
-            end do 
+            end do  
         end do
-        
-        syncall()
-
-        if (THIS_IMAGE() .EQ. 1) then
-            do j = 1, NUM_IMAGES()
-                do i = 1+(j-1)*N/num_images(),j*N/num_images()
-                    result(i,:) = tmp(i,:)[j]
-                end do
-            end do 
-        endif
-
-        syncall()
-
     end subroutine 
 
 end module
