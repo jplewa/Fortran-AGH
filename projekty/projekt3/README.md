@@ -8,7 +8,7 @@ The three excercises are:
 
 * `ex1` - sequential matrix multiplication and Gauss elimination and connecting Fortran with Python
 * `ex2` - parallel matrix multiplication
-* `ex3` - time measurements of both methods
+* `ex3` - time measurements of both matrix multiplication methods
 
 ## Prerequisites
 
@@ -42,4 +42,3 @@ To see the speed comparison of parallel and sequential matrix multiplication, ru
 ```
 make test
 ```
-
