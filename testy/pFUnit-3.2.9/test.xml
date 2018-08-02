@@ -1,9 +1,0 @@
-<testsuite name="suitename[[]]''" errors="0" failures="2" tests="0" time=".0000">
-<testcase name="successtest[]'"/>
-<testcase name="failtest[]'">
-<failure message="Location: [[unknown location]], [invalid] "/>
-</testcase>
-<testcase name="failtest[]'">
-<failure message="Location: [[unknown location]], 'test' "/>
-</testcase>
-</testsuite>
