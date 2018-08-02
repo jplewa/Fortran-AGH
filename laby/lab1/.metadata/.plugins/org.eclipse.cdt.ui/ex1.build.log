@@ -1,0 +1,15 @@
+12:32:48 **** Incremental Build of configuration Debug for project ex1 ****
+make all 
+'Building file: ../main.f90'
+'Invoking: GNU Fortran Compiler'
+gfortran -funderscoring -O0 -g -Wall -c -fmessage-length=0 -o "main.o" "../main.f90"
+'Finished building: ../main.f90'
+' '
+'Building target: ex1'
+'Invoking: GNU Fortran Linker'
+gfortran  -o "ex1"  ./main.o   
+'Finished building target: ex1'
+' '
+
+12:32:52 Build Finished (took 4s.174ms)
+

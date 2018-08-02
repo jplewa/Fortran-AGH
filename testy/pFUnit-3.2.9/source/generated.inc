@@ -1,0 +1,27 @@
+# This file automatically generated. Do not modify.
+GENERATED_CODE += AssertReal0.F90
+GENERATED_CODE += AssertReal1.F90
+GENERATED_CODE += AssertReal2.F90
+GENERATED_CODE += AssertReal3.F90
+GENERATED_CODE += AssertReal4.F90
+GENERATED_CODE += AssertReal5.F90
+GENERATED_CODE += AssertComplex0.F90
+GENERATED_CODE += AssertComplex1.F90
+GENERATED_CODE += AssertComplex2.F90
+GENERATED_CODE += AssertComplex3.F90
+GENERATED_CODE += AssertComplex4.F90
+GENERATED_CODE += AssertComplex5.F90
+GENERATED_CODE += AssertInteger0.F90
+GENERATED_CODE += AssertInteger1.F90
+GENERATED_CODE += AssertInteger2.F90
+GENERATED_CODE += AssertInteger3.F90
+GENERATED_CODE += AssertInteger4.F90
+GENERATED_CODE += AssertInteger5.F90
+GENERATED_CODE += AssertArraysInternalassertNotEqual.F90
+GENERATED_CODE += AssertArraysInternalassertEqual.F90
+GENERATED_CODE += AssertArraysInternalassertGreaterThan.F90
+GENERATED_CODE += AssertArraysInternalassertGreaterThanOrEqual.F90
+GENERATED_CODE += AssertArraysInternalassertLessThan.F90
+GENERATED_CODE += AssertArraysInternalassertLessThanOrEqual.F90
+GENERATED_CODE += AssertArraysInternalassertRelativelyEqual.F90
+GENERATED_CODE += AssertArraysSupport.F90

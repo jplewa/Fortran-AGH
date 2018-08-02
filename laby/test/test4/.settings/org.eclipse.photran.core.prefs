@@ -1,0 +1,4 @@
+EnableVPG=false
+FortranIncludePaths=\\test4\n
+FortranModulePaths=\\test4\n
+eclipse.preferences.version=1

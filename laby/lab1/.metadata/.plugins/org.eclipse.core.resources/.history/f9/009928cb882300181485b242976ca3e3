@@ -1,0 +1,7 @@
+!#define ISIZE 10
+
+program array
+    implicit none
+    integer (kind=4) :: tab(10)
+    print *, tab
+end program array

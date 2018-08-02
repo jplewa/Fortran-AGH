@@ -1,0 +1,29 @@
+subroutine sub1 (a,b)
+    implicit none
+    integer :: a, b
+    a = a*2
+    b = b*2
+end subroutine
+
+subroutine sub2 ()
+    implicit none
+    integer :: i
+    do i = 1, 10
+        write (*,*) i
+    end do
+end subroutine
+
+function fun1 (a,b) result (val)
+    implicit none
+    integer, intent(in) :: a, b
+    integer :: val
+    val = a*b
+end function
+!lalala
+program main
+    integer :: a = 1, b = 2!, fun1
+    call sub1(a,b)
+    write (*,*) a, b
+    write (*,*) fun1 (a, b)
+    call sub2
+end program main
